@@ -113,18 +113,32 @@ int validate_request_server(const weather_request_t *request) {
 
 	// Validazione città: verifica assenza caratteri tab e speciali
 	const char *city_ptr = request->city;
+
 	while (*city_ptr) {
+		// TAB → errore
 		if (*city_ptr == '\t') {
 			return STATUS_INVALID_REQUEST;
 		}
-		// Caratteri ammessi: lettere, spazi, apostrofi, trattini
-		if (!isalpha((unsigned char)*city_ptr) &&
-		    *city_ptr != ' ' &&
-		    *city_ptr != '\'' &&
-		    *city_ptr != '-') {
-			return STATUS_INVALID_REQUEST;
+		// Numeri → AMMESSI
+		if (isdigit((unsigned char)*city_ptr)) {
+			city_ptr++;
+			continue;
 		}
+		// Lettere → ammesse
+		if (isalpha((unsigned char)*city_ptr)) {
+			city_ptr++;
+		    continue;
+		}
+
+		// Spazi → ammessi (anche multipli)
+		if (*city_ptr == ' ') {
 		city_ptr++;
+		continue;
+		}
+
+		// Se arriva qui → carattere speciale → ERRORE
+		return STATUS_INVALID_REQUEST;
+
 	}
 
 	// Verifica disponibilità città
