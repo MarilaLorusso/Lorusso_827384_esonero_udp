@@ -18,7 +18,7 @@
 
 /* Parametri applicazione condivisi */
 #define SERVER_IP "127.0.0.1"     // Indirizzo IP default del server (localhost)
-#define SERVER_PORT 56700         // Porta default del server UDP (SPECIFICATA NELLA TRACCIA)
+#define SERVER_PORT 56700         // Porta default del server UDP
 #define BUFFER_SIZE 512           // Dimensione buffer per messaggi
 
 /* Codici di stato della risposta del server */
@@ -64,7 +64,7 @@ typedef struct {
  * ============================================================================
  */
 
-/* --- Funzioni di serializzazione/deserializzazione --- */
+/* Funzioni di serializzazione/deserializzazione */
 
 /*
  * Serializza una richiesta nel buffer per invio sulla rete
@@ -112,7 +112,7 @@ float get_humidity(void);
 float get_wind(void);
 float get_pressure(void);
 
-/* --- Funzioni di utilità DNS --- */
+/* Funzioni di utilità DNS */
 
 /*
  * Risolve un hostname/IP ottenendo sia il nome che l'indirizzo

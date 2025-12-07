@@ -137,7 +137,6 @@ int validate_request_server(const weather_request_t *request) {
 
 /*
  * Deserializzazione richiesta
- * Wire format: [type: 1 byte] [city: 64 byte]
  */
 int deserialize_request(const uint8_t *buffer, weather_request_t *request) {
 	if (!buffer || !request) {

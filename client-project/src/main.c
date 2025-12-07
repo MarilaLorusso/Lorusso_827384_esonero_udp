@@ -98,8 +98,6 @@ int parse_weather_request(const char *input, weather_request_t *request) {
 
 /*
  * Serializzazione manuale della richiesta
- * Wire format: [type: 1 byte] [city: 64 byte]
- * NO conversione byte order necessaria (type è 1 byte, city è array char)
  */
 int serialize_request(const weather_request_t *request, uint8_t *buffer) {
 	if (!request || !buffer) {
@@ -121,7 +119,6 @@ int serialize_request(const weather_request_t *request, uint8_t *buffer) {
 
 /*
  * Deserializzazione della risposta
- * Wire format: [status: 4 byte uint32_t BE] [type: 1 byte] [value: 4 byte float BE]
  */
 int deserialize_response(const uint8_t *buffer, weather_response_t *response) {
 	if (!buffer || !response) {
